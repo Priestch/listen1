@@ -1,5 +1,5 @@
 [package]
-name = "listen1-cli"
+name = "listen1"
 version = "0.1.0"
 edition = "2021"
 
