@@ -26,9 +26,10 @@ pub struct Netease<'a> {
 }
 
 #[derive(Deserialize, Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct NeteaseFormData {
   pub params: String,
-  pub encSecKey: String,
+  pub enc_sec_key: String,
 }
 
 #[derive(Deserialize, Serialize, Debug)]
