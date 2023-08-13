@@ -1,4 +1,5 @@
 use crate::kugou::KugouSongInPlaylist;
+use crate::netease::NeteasePlaylist;
 use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -9,6 +10,17 @@ pub struct L1PlaylistInfo {
   pub cover_img_url: String,
   pub source_url: String,
   pub title: String,
+}
+
+impl From<NeteasePlaylist> for L1PlaylistInfo {
+  fn from(item: NeteasePlaylist) -> Self {
+    L1PlaylistInfo {
+      id: item.id.clone(),
+      cover_img_url: item.cover_img_url.clone(),
+      source_url: item.source_url.clone(),
+      title: item.title.clone(),
+    }
+  }
 }
 
 #[derive(Debug, Serialize, Deserialize)]

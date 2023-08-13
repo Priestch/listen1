@@ -5,7 +5,6 @@ use reqwest::{header, Client};
 use serde::{Deserialize, Serialize};
 use serde_qs;
 use std::collections::HashMap;
-use std::fmt::{format, Display, Formatter};
 use url::Url;
 
 #[derive(Debug, Serialize)]
