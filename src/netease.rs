@@ -91,10 +91,10 @@ pub struct LyricResponse {
 
 #[derive(Default)]
 pub struct PlaylistParams {
-  order: String,
-  limit: u32,
-  offset: u32,
-  cat: String,
+  pub order: String,
+  pub limit: u32,
+  pub offset: u32,
+  pub cat: String,
 }
 
 impl PlaylistParams {
@@ -195,7 +195,6 @@ impl Netease<'_> {
     let nid = format!("{uid},{timestamp}", uid = uid, timestamp = time);
 
     let expire_at = (time + 1000 * 60 * 60 * 24 * 365 * 100) / 1000;
-    println!("nid is {:?}", nid);
 
     let url = HOST.parse::<Url>().unwrap();
     let uid_cookie = format!(
@@ -312,7 +311,15 @@ impl Netease<'_> {
 
   pub async fn get_self_playlists(&self, params: PlaylistParams) -> Vec<NeteasePlaylist> {
     let url = Url::parse_with_params(PLAYLIST_URL, params.to_params()).unwrap();
-    let resp = self.client.get(url.clone()).send().await.unwrap().text().await.unwrap();
+    let resp = self
+      .client
+      .get(url.clone())
+      .send()
+      .await
+      .unwrap()
+      .text()
+      .await
+      .unwrap();
 
     let document = parse_html().one(resp);
     let list_element = document.select_first(".m-cvrlst").unwrap();
