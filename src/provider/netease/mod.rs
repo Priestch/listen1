@@ -84,7 +84,7 @@ pub struct NeteasePlaylist {
 pub struct NeteasePlaylistsParams {
     pub order: String,
     pub limit: u32,
-    pub offset: Option<u32>,
+    pub offset: Option<u64>,
     #[serde(rename(serialize = "cat"))]
     #[serde(skip_serializing_if = "String::is_empty")]
     pub category_id: String,
